@@ -1,0 +1,9 @@
+# MacOS
+.DS_Store
+
+# Object and executable files
+*.o
+*.out
+
+# Infinite Monkey specific
+infm

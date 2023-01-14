@@ -1,0 +1,2 @@
+# Infinite Monkey
+Source code for the Infinite Monkey language (read [this](https://en.wikipedia.org/wiki/infinite_monkey_theorem) on Wikipedia)! Following [_Crafting Interpreters_](https://craftinginterpreters.com) by Robert Nystrom.
