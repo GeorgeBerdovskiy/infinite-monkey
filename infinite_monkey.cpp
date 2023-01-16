@@ -4,12 +4,28 @@
 #include <sstream>
 #include <fstream>
 
+#include "token_type.h"
+
 using std::cout;
 using std::cin;
 using std::endl;
 
 using std::string;
 using std::ifstream;
+
+// TODO - Put somewhere else
+std::string read_string_from_file(const std::string &file_path) {
+    const std::ifstream input_stream(file_path, std::ios_base::binary);
+
+    if (input_stream.fail()) {
+        throw std::runtime_error("Failed to open file.");
+    }
+
+    std::stringstream buffer;
+    buffer << input_stream.rdbuf();
+
+    return buffer.str();
+}
 
 // TODO - Put somewhere else
 std::vector<std::string> tokenize(string const &str, const char delimiter) {
@@ -25,6 +41,16 @@ std::vector<std::string> tokenize(string const &str, const char delimiter) {
 	return output;
 }
 
+// TODO - Put these somewhere else too
+void report(int line, string where, string message) {
+	cout << "[Line " << line << "] Error " << where << " - ";
+	cout << message << endl;
+}
+
+void error(int line, string message) {
+	report(line, "", "message");
+}
+
 // Run source code provided as string
 void run(string source) {
 	cout << "Running source..." << endl;
@@ -38,27 +64,9 @@ void run(string source) {
 
 // Run file located at 'path'
 void run_file(string path) {
-	string single_line;
-	string source = "";
-
-	ifstream file(path);
-
-	if (file.is_open()) {
-		while (getline(file, single_line)) {
-			source = source + single_line;
-		}
-	} else {
-		cout << "ERROR - File not found." << endl;
-	}
-
-	// TODO - Find a better replacement for this logic
-	if (source != "") {
-		// TODO - Remove when finished debugging
-		cout << source << endl;
-		run(source);
-	}
-
-	file.close();
+	string source;
+	source = read_string_from_file(path);
+	run(source);
 }
 
 // Listen for user prompts and run them one at a time
