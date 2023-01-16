@@ -4,7 +4,7 @@
 #include <sstream>
 #include <fstream>
 
-#include "token_type.h"
+#include "token.h"
 
 using std::cout;
 using std::cin;
