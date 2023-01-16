@@ -2,31 +2,53 @@
 #include <fstream>
 
 using std::cout;
+using std::cin;
 using std::endl;
+
 using std::string;
 using std::ifstream;
 
-void run_file(string path) {
-	cout << "- DEBUG - Running file with path '" << path << "'." << endl;
+// Run source code provided as string
+void run(string source) {
+	cout << "Running source..." << endl;
+}
 
-	string line;
+// Run file located at 'path'
+void run_file(string path) {
+	string single_line;
+	string source = "";
+
 	ifstream file(path);
 
 	if (file.is_open()) {
-		cout << "- DEBUG - File found." << endl;
-
-		while (getline(file, line)) {
-			cout << line << '\n';
+		while (getline(file, single_line)) {
+			source = source + single_line;
 		}
 	} else {
-		cout << "- DEBUG - File not found." << endl;
+		cout << "ERROR - File not found." << endl;
+	}
+
+	// TODO - Find a better replacement for this logic
+	if (source != "") {
+		// TODO - Remove when finished debugging
+		cout << source << endl;
+		run(source);
 	}
 
 	file.close();
 }
 
+// Listen for user prompts and run them one at a time
 void run_prompt() {
-	cout << "- DEBUG - Listening for prompt." << endl;
+	string line;
+
+	do {
+		cout << "> ";
+		cin >> line;
+		cout << "Your line has been read." << endl;
+	} while (line != "Exit.");
+
+	cout << "Exiting..." << endl;
 }
 
 int main(int argc, char *argv[]) {
