@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
 #include <fstream>
 
 using std::cout;
@@ -8,9 +11,29 @@ using std::endl;
 using std::string;
 using std::ifstream;
 
+// TODO - Put somewhere else
+std::vector<std::string> tokenize(string const &str, const char delimiter) {
+	std::vector<string> output;
+
+	std::stringstream ss(str);
+
+	string s;
+	while (getline(ss, s, delimiter)) {
+		output.push_back(s);
+	}
+
+	return output;
+}
+
 // Run source code provided as string
 void run(string source) {
 	cout << "Running source..." << endl;
+
+	std::vector<string> tokenized_source = tokenize(source, ' ');
+
+	for (int i = 0; i < tokenized_source.size(); i++) {
+		cout << tokenized_source[i] << endl;
+	}
 }
 
 // Run file located at 'path'
