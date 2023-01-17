@@ -1,8 +1,8 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-// Represents tokens, defined in 'token.cpp'
-class Token;
+#include <string>
+using std::string;
 
 // Represents the different possible token types
 enum TokenType {
@@ -24,6 +24,23 @@ enum TokenType {
     PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
 
     END_OF_FILE
+};
+
+// Represents tokens, defined in 'token.cpp'
+class Token {
+    public:
+        // NOTE - The 'literal' parameter is a Java Object in 'Crafting Interpreters'
+        Token(TokenType type, string lexeme, string literal, int line);
+
+        string toString();
+    private:
+		// Private class members
+        TokenType type;
+        string lexeme, literal;
+        int line;
+
+		// Converts token (enum) to string
+		string typeString();
 };
 
 #endif
