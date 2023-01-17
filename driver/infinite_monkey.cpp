@@ -13,6 +13,9 @@ using std::endl;
 using std::string;
 using std::ifstream;
 
+// NOTE - This is a static class member in 'Crafting Interpreters'
+bool hasError = false;
+
 // TODO - Put somewhere else
 std::string read_string_from_file(const std::string &file_path) {
     const std::ifstream input_stream(file_path, std::ios_base::binary);
@@ -41,6 +44,11 @@ void run_file(string path) {
 	string source;
 	source = read_string_from_file(path);
 	run(source);
+
+	if (hasError) {
+		// TODO - Replace with nonzero exit code
+		exit(0);
+	}
 }
 
 // Listen for user prompts and run them one at a time
@@ -51,6 +59,9 @@ void run_prompt() {
 		cout << "> ";
 		cin >> line;
 		cout << "Your line has been read." << endl;
+
+		// TODO - Run the line
+		hasError = false;
 	} while (line != "Exit.");
 
 	cout << "Exiting..." << endl;
