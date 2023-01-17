@@ -1,6 +1,10 @@
-#ifndef TOKEN_TYPE_H
-#define TOKEN_TYPE_H
+#ifndef TOKEN_H
+#define TOKEN_H
 
+// Represents tokens, defined in 'token.cpp'
+class Token;
+
+// Represents the different possible token types
 enum TokenType {
     // Single-character tokens
     LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE,

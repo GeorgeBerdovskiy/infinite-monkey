@@ -4,7 +4,7 @@
 #include <sstream>
 #include <fstream>
 
-#include "token.h"
+#include "../lexer/token.h"
 
 using std::cout;
 using std::cin;
@@ -27,38 +27,12 @@ std::string read_string_from_file(const std::string &file_path) {
     return buffer.str();
 }
 
-// TODO - Put somewhere else
-std::vector<std::string> tokenize(string const &str, const char delimiter) {
-	std::vector<string> output;
-
-	std::stringstream ss(str);
-
-	string s;
-	while (getline(ss, s, delimiter)) {
-		output.push_back(s);
-	}
-
-	return output;
-}
-
-// TODO - Put these somewhere else too
-void report(int line, string where, string message) {
-	cout << "[Line " << line << "] Error " << where << " - ";
-	cout << message << endl;
-}
-
-void error(int line, string message) {
-	report(line, "", "message");
-}
-
 // Run source code provided as string
 void run(string source) {
 	cout << "Running source..." << endl;
 
-	std::vector<string> tokenized_source = tokenize(source, ' ');
-
-	for (int i = 0; i < tokenized_source.size(); i++) {
-		cout << tokenized_source[i] << endl;
+	for (int i = 0; i < source.size(); i++) {
+		cout << source[i] << endl;
 	}
 }
 

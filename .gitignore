@@ -1,6 +1,9 @@
 # MacOS
 .DS_Store
 
+# Editors and IDEs
+.vscode
+
 # Object and executable files
 *.o
 *.out
